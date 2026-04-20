@@ -1,7 +1,7 @@
-# KaiDoku - AI Research Decoder (React Project)
+# KAIDOKU - AI Research Decoder (React Project)
 
 ## 1. Product Title
-**KaiDoku (解読)** - AI Research Decoder
+**KAIDOKU (解読)** - AI Research Decoder
 
 ## 2. Problem Statement
 Academic research papers are historically dense, heavily reliant on highly specialized jargon, and presented in unapproachable formats. Managing and attempting to process this knowledge manually becomes extremely difficult for non-experts, students, and interdisciplinary researchers.
