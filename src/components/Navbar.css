@@ -1,0 +1,148 @@
+/* ─────────────────────────────────────────────────────────────────
+   NAVBAR.CSS — Unified Brutalist Navbar
+   Used on ALL pages (Home, Explore, Upload, PaperDetail, Dashboard)
+   Fonts: Bebas Neue (logo), IBM Plex Mono (links/btn)
+   4-column grid: auto  1fr  auto  auto
+   mix-blend-mode: difference on logo + links ONLY (not upload btn)
+   Scroll >80px → frosted dark background
+───────────────────────────────────────────────────────────────── */
+
+/* ── Tokens (mirrors Home.css tokens so both pages share values) ── */
+.kd-navbar {
+  --nb-black:    #050505;
+  --nb-white:    #f5f2ec;
+  --nb-gray:     #888070;
+  --nb-accent:   #a78bfa;
+  --nb-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Layout */
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 300;
+  height: 64px;
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: 0 32px;
+  padding: 0 32px;
+
+  /* Initially transparent */
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition:
+    background     0.4s var(--nb-ease-out),
+    border-color   0.4s var(--nb-ease-out),
+    backdrop-filter 0.4s;
+}
+
+/* Frosted on scroll */
+.kd-navbar--scrolled {
+  background: rgba(5, 5, 5, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom-color: rgba(255, 255, 255, 0.07);
+}
+
+/* ── Col 1: Logo ──────────────────────────────────────────────── */
+.kd-navbar__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  mix-blend-mode: difference;
+  text-decoration: none;
+}
+.kd-navbar__kanji {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 22px;
+  color: var(--nb-accent);
+  line-height: 1;
+}
+.kd-navbar__wordmark {
+  font-family: 'Bebas Neue', 'Barlow Condensed', sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.05em;
+  color: var(--nb-white);
+}
+
+/* ── Col 2: Tagline (center) ──────────────────────────────────── */
+.kd-navbar__tagline-wrap {
+  text-align: center;
+}
+.kd-navbar__tagline {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--nb-gray);
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+/* ── Col 3: Nav links ─────────────────────────────────────────── */
+.kd-navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.kd-navbar__link {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--nb-gray);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  mix-blend-mode: difference;
+  transition: color 0.2s;
+}
+.kd-navbar__link:hover { color: var(--nb-white); }
+
+/* ── Col 4: Upload button — sharp corners, violet left-wipe ───── */
+.kd-navbar__upload {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  height: 36px;
+  padding: 0 24px;
+  background: var(--nb-white);
+  color: var(--nb-black);
+  border: none;
+  border-radius: 0;               /* sharp corners */
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  /* NO mix-blend-mode on this button */
+  transition: color 0.3s var(--nb-ease-out);
+}
+.kd-navbar__upload::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--nb-accent);
+  transform: translateX(-101%);
+  transition: transform 0.35s var(--nb-ease-out);
+  z-index: -1;
+}
+.kd-navbar__upload:hover::after { transform: translateX(0); }
+.kd-navbar__upload:hover        { color: var(--nb-white); }
+
+/* ── Mobile ≤768px: hide tagline + links, keep logo + upload ──── */
+@media (max-width: 768px) {
+  .kd-navbar {
+    grid-template-columns: auto 1fr auto;
+    gap: 0 16px;
+    padding: 0 20px;
+    height: 56px;
+  }
+  .kd-navbar__tagline-wrap,
+  .kd-navbar__links { display: none; }
+}
