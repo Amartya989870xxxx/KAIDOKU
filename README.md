@@ -1,5 +1,7 @@
 # KAIDOKU - AI Research Decoder (React Project)
 
+* Demo Video : https://drive.google.com/file/d/1tJHPZqMoK2rbFUegu3aN8VLtuvQfVpoL/view?usp=sharing
+
 ## 1. Product Title
 **KAIDOKU (解読)** - AI Research Decoder
 
